@@ -16,6 +16,8 @@ CREATE TABLE Master_Team_Stats
  wins         int NOT NULL,
  draws        int NOT NULL,
  loses        int NOT NULL,
+ scored       int NOT NULL,
+ pts          int NOT NULL,
  npxGD        decimal(6,4) NOT NULL,
  a            varchar(5) NOT NULL,
  h            varchar(5) NOT NULL,
