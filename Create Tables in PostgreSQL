@@ -1,0 +1,65 @@
+CREATE TABLE Teams_Information_Table (
+    Team_ID int PRIMARY KEY NOT NULL,
+    Title varchar(50) NOT NULL
+);
+
+CREATE TABLE Player_Information_Table (
+    Player_ID int PRIMARY KEY NOT NULL,
+    Team_ID int NOT NULL,
+    Player_Name varchar(50) NOT NULL,
+    Team_title varchar(30) NOT NULL,
+    "Position" varchar(10) NOT NULL,
+    FOREIGN KEY (Team_ID) REFERENCES Teams_Information_Table (Team_ID)
+);
+
+CREATE TABLE Player_Stats_Table (
+    Player_ID int PRIMARY KEY NOT NULL,
+    Games int NOT NULL,
+    "Time" int NOT NULL,
+    Goals int NOT NULL,
+    xG decimal(6,4) NOT NULL,
+    Assists int NOT NULL,
+    xA decimal(6,4) NOT NULL,
+    Shots int NOT NULL,
+    Key_Passes int NOT NULL,
+    Yellow_Cards int NOT NULL,
+    Red_Cards int NOT NULL,
+    npG int NOT NULL,
+    npxG decimal(6,4) NOT NULL,
+    xGChain decimal(6,4) NOT NULL,
+    xGBuildUp decimal(6,4) NOT NULL,
+    FOREIGN KEY (Player_ID) REFERENCES Player_Information_Table (Player_ID)
+);
+
+CREATE TABLE Team_Matches_Table (
+    Game_ID int PRIMARY KEY NOT NULL,
+    H_A varchar(1) NOT NULL,
+    Team_ID int NOT NULL,
+    "Result" varchar(1) NOT NULL,
+    "Date" date NOT NULL,
+    FOREIGN KEY (Team_ID) REFERENCES Teams_Information_Table (Team_ID)
+);
+
+CREATE TABLE Team_Match_Result_Table (
+    Game_ID int PRIMARY KEY NOT NULL,
+    xG decimal(6,4) NOT NULL,
+    xGA decimal(6,4) NOT NULL,
+    npxG decimal(6,4) NOT NULL,
+    npxGA decimal(6,4) NOT NULL,
+    Deep int NOT NULL,
+    Deep_Allowed int NOT NULL,
+    Scored int NOT NULL,
+    Missed int NOT NULL,
+    xPts decimal(6,4) NOT NULL,
+    Wins int NOT NULL,
+    Draws int NOT NULL,
+    Losses int NOT NULL,
+    Pts int NOT NULL,
+    npxGD decimal(6,4) NOT NULL,
+    "A" int NOT NULL,
+    "H" int NOT NULL,
+    FOREIGN KEY (Game_ID) REFERENCES Team_Matches_Table (Game_ID)
+);
+
+
+
